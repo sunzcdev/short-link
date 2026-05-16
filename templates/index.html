@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>短链接生成器</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="/" class="nav-link active">生成短链接</a>
+            <a href="/stats" class="nav-link">访问统计</a>
+        </nav>
+
+        <div class="card">
+            <h1>🔗 短链接生成器</h1>
+            <p class="subtitle">输入长链接，一键生成简洁的短链接</p>
+
+            <form id="shorten-form">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="url-input" 
+                        placeholder="请输入长链接，例如：https://example.com/very/long/url"
+                        required
+                    >
+                    <button type="submit" id="generate-btn">生成短链接</button>
+                </div>
+            </form>
+
+            <div id="result" class="result hidden">
+                <div class="result-label">生成的短链接：</div>
+                <div class="short-url-container">
+                    <span id="short-url"></span>
+                    <button id="copy-btn" class="copy-btn">复制</button>
+                </div>
+                <div class="original-url">
+                    <span class="label">原始链接：</span>
+                    <span id="original-url"></span>
+                </div>
+            </div>
+
+            <div id="error" class="error hidden"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

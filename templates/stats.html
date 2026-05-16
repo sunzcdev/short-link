@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>短链接统计</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="/" class="nav-link">生成短链接</a>
+            <a href="/stats" class="nav-link active">访问统计</a>
+        </nav>
+
+        <div class="card">
+            <h1>📊 短链接统计</h1>
+            <p class="subtitle">输入短链接 code 查看访问统计数据</p>
+
+            <form id="stats-form">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="code-input" 
+                        placeholder="请输入短链接 code"
+                        required
+                    >
+                    <button type="submit" id="query-btn">查询统计</button>
+                </div>
+            </form>
+
+            <div id="error" class="error hidden"></div>
+
+            <div id="stats-result" class="stats-result hidden">
+                <div class="stats-header">
+                    <div class="stat-item">
+                        <div class="stat-value" id="total-visits">0</div>
+                        <div class="stat-label">总访问次数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="unique-visitors">0</div>
+                        <div class="stat-label">独立访客数</div>
+                    </div>
+                </div>
+
+                <div class="stats-info">
+                    <div class="info-row">
+                        <span class="info-label">短 Code：</span>
+                        <span id="stats-code"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">原始链接：</span>
+                        <a id="stats-original-url" href="#" target="_blank"></a>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">创建时间：</span>
+                        <span id="stats-created-at"></span>
+                    </div>
+                </div>
+
+                <h2 class="section-title">最近访问记录</h2>
+                <div class="visits-list">
+                    <div class="visit-item header">
+                        <span>IP 地址</span>
+                        <span>浏览器</span>
+                        <span>操作系统</span>
+                        <span>设备</span>
+                        <span>访问时间</span>
+                    </div>
+                    <div id="visits-container"></div>
+                </div>
+
+                <div id="no-visits" class="no-visits hidden">暂无访问记录</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
+</body>
+</html>
